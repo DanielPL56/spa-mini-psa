@@ -19,7 +19,7 @@ const ListOfDogs = () => {
                 </ul>
                </div> 
             ))}
-            { isLoading && <div>Loading</div> }
+            { isLoading && <div>Wczytywanie</div> }
             { error && <div>{ error }</div> }
 
         </div>

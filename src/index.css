@@ -3,6 +3,8 @@
   color: #333;
 }
 
+
+
 .content {
   max-width: 1000px;
   padding: 10px;
@@ -47,11 +49,32 @@
   text-decoration: none;
 }
 
+.dogDetail {
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  border: solid 1px;
+}
+.dogDetailButton {
+  text-align: right;
+}
+.dogDetail button, .newDog button {
+  background: rgb(0, 0, 0, 0.5);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.dogDetail button:hover, .newDog button:hover {
+  background-color: rgb(255, 0, 0);
+}
+
 .newDog {
   max-width: 1000px;
   margin: 0px;
   text-align: center;
-  display: grid;
 }
 .newDog h2 {
   margin-bottom: 10px;
@@ -66,7 +89,4 @@
   margin: 10px 0;
   border: 1px solid #ddd;
   box-sizing: border-box;
-}
-.newDog button {
-  
 }

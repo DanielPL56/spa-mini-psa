@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Dog from "../Model/Dog";
 
 const NewDog = () => {
 
     const [ name, setName ] = useState("");
-    const [ breed, setBreed ] = useState("");
+    const [ breed, setBreed ] = useState("York");
     const [ dateOfBirth, setDateOfBirth ] = useState("");
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
     const url = "https://localhost:7253/api/Dog";
     const navigate = useNavigate();
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -25,10 +25,7 @@ const NewDog = () => {
         }).then(() => {
             setIsLoading(false);
             navigate("/dogs");
-            console.log(JSON.stringify(dog));
         })
-
-        console.log(dog);
     }
 
     const handleOnChange = (e) => {
@@ -68,10 +65,11 @@ const NewDog = () => {
                 <label>Data urodzenia: </label>
                 <input id="dateInput" type="date" required value={ dateOfBirth } onChange={ handleOnChange }/>
 
-                <button>Add</button>
+                <div><button>Zapisz</button></div>
             </form>
 
             { error && <h2>{ error }</h2>}
+            { isLoading && <h2>Wczytywanie...</h2>}
 
         </div>
     );

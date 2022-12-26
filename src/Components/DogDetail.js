@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useFetch  from '../Functions/useFetch';
-import Dog from '../Model/Dog';
 
 const DogDetail = () => {
 
@@ -10,30 +8,30 @@ const DogDetail = () => {
     const url = `https://localhost:7253/api/Dog/${ dogId }`
     const { data: dog, isLoading, error } = useFetch(url);
 
-    useEffect(() => {
-        if(dog !== null) {
-            const dogModel = new Dog(dog.name, dog.breed);
-            console.log(dogModel);
-        }
-    }, [dog])
-
-    const handleClick = () => {
+    const handleDeleteClick = () => {
         fetch(url, { method: "DELETE" })
         .then(() => {
-            navigate("/dogs")
+            navigate("/dogs");  
         })
+    }
+
+    const handleEditClick = () => {
+        navigate("/editDog", { state: { message: "message from dogDetail"}})
     }
 
     return(
         <div className="dogDetail">
-            Hello from dogdetail
+            Hello from dog detail
             { dog && <div>
             <p>Dog id: { dog.id }</p>
             <p>Dog breed: { dog.breed }</p>
             </div> }
-            { isLoading && <div>Loading...</div> }
+            { isLoading && <div>Wczytywanie...</div> }
             { error && <div>{ error }</div> }
-            <button onClick={ handleClick }>Delete</button>
+            <div className="dogDetailButton">
+                <button onClick={ handleEditClick }>Edytuj</button>
+                <button onClick={ handleDeleteClick }>Usuń</button>
+                </div>
         </div>
     );
 }

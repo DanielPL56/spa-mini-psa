@@ -1,19 +1,26 @@
-import Dogs from "../Data/Dogs";
-import { useState } from 'react';
+import useFetch from "../Functions/useFetch";
+import { Link } from 'react-router-dom';
 
 const ListOfDogs = () => {
 
-    const [ dogs, setDogs ] = useState(Dogs());
+    const url = "https://localhost:7253/api/Dog"
+    const { data: dogs, isLoading, error } = useFetch(url);
 
     return (
-        <div>
-            Hello from dogs:
-            
-            {dogs.map((dog) => (
-               <div key={ dog.id }>
-                { dog.name } is under { dog.age }
+        <div className="dogList">
+            { dogs && dogs.map((dog) => (
+               <div className="dogPreview" key={ dog.id }>
+                <Link to={ `/dog-detail/${ dog.id }` }><h2>{ dog.name }</h2></Link>
+                <ul>
+                    <li>Rasa: { dog.breed }</li>
+                    <li>Data urodzenia: { dog.dateOfBirth }</li>
+                    <li>Data pierwszego odrobaczenia: { dog.dateOfFirstDeworming }</li>
+                    <li>Data pierwszej szczepionki: { dog.dateOfFirstVaccination }</li>
+                </ul>
                </div> 
             ))}
+            { isLoading && <div>Loading</div> }
+            { error && <div>{ error }</div> }
 
         </div>
     );

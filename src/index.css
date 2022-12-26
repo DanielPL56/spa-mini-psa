@@ -4,18 +4,15 @@
 }
 
 .content {
-  background-color: rgba(250, 2, 2, 0.349);
-  max-width: 800px;
+  max-width: 1000px;
   padding: 10px;
   align-items: center;
   margin: 0 auto;
   margin-top: 10px;
-  border-left: solid 2px;
-  border-right: solid 2px;
 }
 
 .navbar {
-  max-width: 600px;
+  max-width: 1000px;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -28,7 +25,7 @@
 }
 .navbar a {
   text-decoration: none;
-  padding: 10px;
+  padding: 10px 16px;
   font-size: 20px;
 }
 .navbar a:hover {
@@ -36,4 +33,40 @@
 }
 .navbar h2 {
   font-size: 40px;
+}
+
+.dogPreview {
+  padding: 10px 16px;
+  margin: 20px 0px;
+  border-bottom: solid 2px;
+}
+.dogPreview:hover {
+  box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.2);
+}
+.dogPreview a {
+  text-decoration: none;
+}
+
+.newDog {
+  max-width: 1000px;
+  margin: 0px;
+  text-align: center;
+  display: grid;
+}
+.newDog h2 {
+  margin-bottom: 10px;
+}
+.newDog label {
+  text-align: center;
+  display: block;
+}
+.newDog input, .newDog Select {
+  width: 20%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+.newDog button {
+  
 }

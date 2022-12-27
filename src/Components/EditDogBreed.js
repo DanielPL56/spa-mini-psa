@@ -4,7 +4,6 @@ import useFetch from "../Functions/useFetch";
 const EditDogBreed = ({dog}) => {
 
     const [newBreed, setNewBreed ] = useState(dog.breed);
-    const [oldBreed, setOldBreed ] = useState(dog.breed);
 
     const url = "https://localhost:7253/api/breed";
     const { data: breeds } = useFetch(url);
@@ -15,8 +14,7 @@ const EditDogBreed = ({dog}) => {
     }
 
     return (
-        <div className="editDogBreed">
-            <label>Rasa: <b>{ oldBreed }</b> {" ==> "} </label>
+        <div>
             <select type="text" value={ newBreed } onChange={ (e) => handleChange(e.target.value) }>
                 { breeds && breeds.map((b) => (
                     <option key={ b.id } value={ b.name }>{ b.name }</option>

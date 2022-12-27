@@ -30,8 +30,8 @@ const EditDogDate = ({dog}) => {
     };
 
     return (
-        <div className="editDogDate">
-            <label>Data urodzenia: <b>{ oldDate.slice(0, 10) }</b> {" ==> "} </label>
+        <div>
+            
             <input type="date" value={ newDate.slice(0, 10) } onChange={ handleOnChange }/>
             <label>Nowa data urodzenia: <b>{ newDate.slice(0, 10) }</b></label>
 

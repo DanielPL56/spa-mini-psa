@@ -1,76 +1,52 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Dog from "../Model/Dog";
+import EditDogBreed from "./EditDogBreed";
+import EditDogName from "./EditDogName";
+import EditDogDate from "./EditDogDate";
 
 const NewDog = () => {
 
-    const [ name, setName ] = useState("");
-    const [ breed, setBreed ] = useState("York");
-    const [ dateOfBirth, setDateOfBirth ] = useState("");
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
     const url = "https://localhost:7253/api/Dog";
     const navigate = useNavigate();
 
+    const newDog = new Dog("", "", "");
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
 
-        const dog = new Dog(name, breed, dateOfBirth);
-
         fetch(url, { 
             method: "POST",
             headers: { "Content-type" : "Application/json"},
-            body: JSON.stringify(dog)
-        }).then(() => {
+            body: JSON.stringify(newDog)
+        }).then((response) => {
+            if(response.ok){
+                setIsLoading(false);
+                navigate("/dogs");
+                setError(null);
+            }
+            setError("Something gone wrong")
+        }).catch((err) => {
+            setError(err.message);
             setIsLoading(false);
-            navigate("/dogs");
         })
     }
 
-    const handleOnChange = (e) => {
-
-        setDateOfBirth(e.target.value);
-
-        const actualDay = new Date().getDate();
-        const actualMonth = new Date().getMonth();
-        const actualYear = new Date().getFullYear();
-
-        const actualDate = new Date(actualYear, actualMonth, actualDay + 1);
-        const chosenDate = new Date(e.target.value);
-        
-        if (chosenDate > actualDate) {
-            setError("Podaj poprawną datę urodzenia psa");
-            setDateOfBirth("");
-            return;
-        }
-
-        setError(null);
-    }
-//newDog
     return (
         <div className="newDog">
             <h2>Dodaj psa</h2>
             <form onSubmit={ handleSubmit }>
-                <label>Imię: </label>
-                <input type="text" required value={ name } onChange={ (e) => setName(e.target.value) } />
-
-                <label>Rasa: </label>
-                <select type="text" required value={ breed } onChange={ (e) => setBreed(e.target.value) }>
-                    <option value="York">York</option>
-                    <option value="Sznaucer">Sznaucer</option>
-                    <option value="Shih-tzu">Shih-tzu</option>
-                </select>
-
-                <label>Data urodzenia: </label>
-                <input type="date" required value={ dateOfBirth } onChange={ handleOnChange }/>
-
+                <EditDogName dog={ newDog } />
+                <EditDogBreed dog={ newDog } />
+                <EditDogDate dog={ newDog } />
                 <div><button>Zapisz</button></div>
             </form>
 
             { error && <h2>{ error }</h2>}
             { isLoading && <h2>Wczytywanie...</h2>}
-
         </div>
     );
 }

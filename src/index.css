@@ -8,7 +8,6 @@
 .content {
   max-width: 1000px;
   padding: 10px;
-  align-items: center;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -55,10 +54,10 @@
   margin: 10px;
   border: solid 1px;
 }
-.dogDetailButton {
+.dogDetailButton, .editDogButton {
   text-align: right;
 }
-.dogDetail button, .newDog button {
+.dogDetail button, .newDog button, .editDog button {
   background: rgb(0, 0, 0, 0.5);
   color: #fff;
   border: 0;
@@ -67,7 +66,7 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.dogDetail button:hover, .newDog button:hover {
+.dogDetail button:hover, .newDog button:hover, .editDog button:hover {
   background-color: rgb(255, 0, 0);
 }
 
@@ -89,4 +88,25 @@
   margin: 10px 0;
   border: 1px solid #ddd;
   box-sizing: border-box;
+}
+
+.editDog {
+  padding: 10px;
+  border:solid 1px;
+  max-width: 1000px;
+}
+.editDog form {
+  text-align: center;
+}
+.editDogName {
+  padding: 10px;
+}
+.editDogName label, .editDogBreed label, .editDogDate label {
+  padding: 10px;
+}
+.editDogBreed {
+  padding: 10px;
+}
+.editDogDate {
+  padding: 10px;
 }

@@ -16,7 +16,7 @@ const DogDetail = () => {
     }
 
     const handleEditClick = () => {
-        navigate("/editDog", { state: { message: "message from dogDetail"}})
+        navigate("/editDog", { state: { dog: dog, url: url }})
     }
 
     return(

@@ -47,7 +47,7 @@ const NewDog = () => {
 
         setError(null);
     }
-
+//newDog
     return (
         <div className="newDog">
             <h2>Dodaj psa</h2>
@@ -63,7 +63,7 @@ const NewDog = () => {
                 </select>
 
                 <label>Data urodzenia: </label>
-                <input id="dateInput" type="date" required value={ dateOfBirth } onChange={ handleOnChange }/>
+                <input type="date" required value={ dateOfBirth } onChange={ handleOnChange }/>
 
                 <div><button>Zapisz</button></div>
             </form>

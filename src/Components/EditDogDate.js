@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const EditDogDate = ({ dog }) => {
 
@@ -17,8 +17,8 @@ const EditDogDate = ({ dog }) => {
         const chosenDate = new Date(value);
         
         if (chosenDate > actualDate) {
-            setError("Podaj poprawną datę urodzenia psa");
-            setNewDate("");
+            setError('Podaj poprawną datę urodzenia psa');
+            setNewDate('');
             return;
         }
 
@@ -29,8 +29,8 @@ const EditDogDate = ({ dog }) => {
 
     return (
         <span>
-            <input type="date" required value={ newDate.slice(0, 10) } onChange={ handleOnChange }/>
-            { error && <h2 className="error">{ error }</h2>}
+            <input type='date' required value={newDate.slice(0, 10)} onChange={handleOnChange}/>
+            {error && <h2 className='error'>{error}</h2>}
         </span>
     );
 }

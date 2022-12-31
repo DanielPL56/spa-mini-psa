@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import useFetch from "./useFetch.hook";
+import { useEffect, useState } from 'react';
+import useFetch from './useFetch.hook';
 
 const useGetBreeds = () => {
-    const url = "https://localhost:7253/api/breed";
+    const url = 'https://localhost:7253/api/breed';
     const [data, setData] = useState();
 
     const { isLoading, error, executeAsync, abort } = useFetch(url)

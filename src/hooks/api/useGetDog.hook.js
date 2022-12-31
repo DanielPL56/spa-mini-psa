@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import useFetch from "./useFetch.hook";
+import { useEffect, useState } from 'react';
+import useFetch from './useFetch.hook';
 
 const useGetDog = (dogId) => {
     const url = `https://localhost:7253/api/Dog/${ dogId }`;

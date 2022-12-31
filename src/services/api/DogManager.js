@@ -1,8 +1,10 @@
-import apiService from "./apiService";
+import apiService from './apiService';
 
 class DogManager {
+    static url = 'https://localhost:7253/api/Dog';
+
     static deleteDog = async (dogId) => {
-        const url = `https://localhost:7253/api/Dog/${dogId}`;
+        const url = this.url + `/${dogId}`;
 
         const { isLoading, error, okStatus } = await apiService(url, 'DELETE');
 
@@ -10,7 +12,7 @@ class DogManager {
     }
 
     static getDog = async (dogId) => {
-        const url = `https://localhost:7253/api/Dog/${dogId}`;
+        const url = this.url + `/${dogId}`;
         
         const { isLoading, error, data } = await apiService(url);
         
@@ -18,16 +20,14 @@ class DogManager {
     }
 
     static addDog = async (dog) => {
-        const url = 'https://localhost:7253/api/Dog';
-        
-        const { isLoading, error, okStatus } = await apiService(url, 'POST', dog);
+        const { isLoading, error, okStatus } = await apiService(this.url, 'POST', dog);
 
         return { isLoading, error, okStatus };
     }
 
     static updateDog = async (dog) => {
         //const url = 'http://httpstat.us/400';
-        const url = `https://localhost:7253/api/Dog/${dog.id}`
+        const url = this.url + `/${dog.id}`;
 
         const { isLoading, error, okStatus } = await apiService(url, 'PUT', dog);
 

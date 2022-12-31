@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from "react-router-dom";
-import EditDogName from "./EditDogName";
-import EditDogBreed from "./EditDogBreed";
-import EditDogDate from "./EditDogDate";
+import { useLocation, useNavigate } from 'react-router-dom';
+import EditDogName from './EditDogName';
+import EditDogBreed from './EditDogBreed';
+import EditDogDate from './EditDogDate';
 import DogManager from '../services/api/DogManager';
 
 const EditDog = () => {
-
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -30,23 +29,23 @@ const EditDog = () => {
     }
         
     return (
-        <div className="editDog">
-            <form onSubmit={ (e) => handleOnSubmit(e)}>
+        <div className='editDog'>
+            <form onSubmit={(e) => handleOnSubmit(e)}>
                 <ul>
                     <li>
-                        <span>Imię: <b>{ oldName }</b>{ " ==> " }</span>
-                        <EditDogName dog={ dog } />
+                        <span>Imię: <b>{oldName}</b>{' ==> '}</span>
+                        <EditDogName dog={dog} />
                     </li>
                     <li>
-                        <span>Rasa: <b>{ oldBreed }</b> {" ==> "} </span>
-                        <EditDogBreed dog={ dog } />    
+                        <span>Rasa: <b>{oldBreed}</b> {' ==> '} </span>
+                        <EditDogBreed dog={dog} />    
                     </li>
                     <li>
-                        <span>Data urodzenia: <b>{ oldDate.slice(0, 10) }</b> {" ==> "} </span>
-                        <EditDogDate dog={ dog } />
+                        <span>Data urodzenia: <b>{oldDate.slice(0, 10)}</b> {' ==> '} </span>
+                        <EditDogDate dog={dog} />
                     </li>
                 </ul>
-                <div className="save"><button>Zapisz</button></div>
+                <div className='save'><button>Zapisz</button></div>
                 {isLoading && <div>Wczytywanie...</div>}
                 {error && <div className='error'>{error}</div>}
             </form>

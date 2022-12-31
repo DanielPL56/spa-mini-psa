@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const EditDogName = ({ dog }) => {
 
@@ -11,7 +11,7 @@ const EditDogName = ({ dog }) => {
 
     return (
         <span>
-            <input type="text" required value={ newName } onChange={ (e) => { handleChange(e.target.value) } } />
+            <input type='text' required value={newName} onChange={(e) => {handleChange(e.target.value)}} />
         </span>
     );
 }

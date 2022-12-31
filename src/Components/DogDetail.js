@@ -30,21 +30,21 @@ const DogDetail = () => {
     }
 
     const handleOnEditClick = () => {
-        navigate("/editDog", { state: { dog: dog }})
+        navigate('/editDog', { state: { dog: dog }})
     }
 
     return(
-        <div className="dogDetail">
+        <div className='dogDetail'>
             Hello from dog detail
             { dog && <div>
-            <p>Dog id: { dog.id }</p>
-            <p>Dog breed: { dog.breed }</p>
+            <p>Dog id: {dog.id}</p>
+            <p>Dog breed: {dog.breed}</p>
             </div> }
             { isLoading && <div>Wczytywanie...</div> }
-            { error && <div className="error">{ error }</div> }
-            <div className="buttons">
-                <button onClick={ handleOnEditClick }>Edytuj</button>
-                <button onClick={ handleOnDeleteClick }>Usuń</button>
+            {error && <div className='error'>{error}</div> }
+            <div className='buttons'>
+                <button onClick={handleOnEditClick}>Edytuj</button>
+                <button onClick={handleOnDeleteClick}>Usuń</button>
             </div>
         </div>
     );

@@ -17,7 +17,7 @@ const apiService = async (url, method = 'GET', body) => {
             data = await response.json();
         }
         else {
-            error = "Something gone wrong";
+            error = 'Something gone wrong';
             isLoading = false;
         }
     } catch (exception) {

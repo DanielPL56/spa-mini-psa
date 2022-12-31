@@ -1,27 +1,32 @@
 import { useState } from "react";
-import useFetch from "../Functions/useFetch";
+import useGetBreeds from "../hooks/api/useGetBreeds.hook";
 
-const EditDogBreed = ({dog}) => {
+const EditDogBreed = ({ dog }) => {
 
     const [newBreed, setNewBreed ] = useState(dog.breed);
+    const [error, setError ] = useState(null);
 
-    const url = "https://localhost:7253/api/breed";
-    const { data: breeds } = useFetch(url);
+    const { data: breeds, error: fetchError } = useGetBreeds();
+    if (fetchError !== null) setError(fetchError);
     
-    const handleChange = (value) => {
-        setNewBreed(value);
-        dog.breed = value;
+    const handleOnChange = (value) => {
+        if(value !== "-") {
+            setNewBreed(value);
+            dog.breed = value;
+            setError(null);
+        }
+        else{setError("Wybierz rase")}
     }
 
     return (
-        <div>
-            <select type="text" value={ newBreed } onChange={ (e) => handleChange(e.target.value) }>
-                { breeds && breeds.map((b) => (
-                    <option key={ b.id } value={ b.name }>{ b.name }</option>
+        <span>
+            <select type="text" required value={ newBreed } onChange={ (e) => handleOnChange(e.target.value) }>
+                { breeds &&  breeds.map((breed) => ( 
+                    <option key={ breed.id } value={ breed.name }>{ breed.name }</option>
                 ))}
             </select>
-            <label>Nowa rasa: <b>{ newBreed }</b></label>
-        </div>
+            { error && <div className="error">{ error }</div>}
+        </span>
     );
 }
 

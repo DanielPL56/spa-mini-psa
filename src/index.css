@@ -3,6 +3,33 @@
   color: #333;
 }
 
+button {
+  background: rgb(0, 0, 0, 0.5);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+input, select {
+  width: 20%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .content {
   max-width: 1000px;
   padding: 10px;
@@ -32,6 +59,7 @@
 }
 .navbar h2 {
   font-size: 40px;
+  text-shadow: 4px 4px lightgray;
 }
 
 .dogPreview {
@@ -52,59 +80,50 @@
   margin: 10px;
   border: solid 1px;
 }
-.dogDetailButton, .editDogButton {
+.dogDetail .buttons {
   text-align: right;
-}
-.dogDetail button, .newDog button, .editDog button {
-  background: rgb(0, 0, 0, 0.5);
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  margin: 5px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.dogDetail button:hover, .newDog button:hover, .editDog button:hover {
-  background-color: rgb(255, 0, 0);
 }
 
 .newDog {
-  max-width: 1000px;
-  margin: 0px;
+  width: 1000px;
   text-align: center;
 }
 .newDog h2 {
   margin-bottom: 10px;
 }
-.newDog label {
+.newDog span {
   text-align: center;
-  display: block;
+  padding: 10px;
 }
-.newDog input, .newDog Select {
-  width: 20%;
-  padding: 6px 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
+.newDog ul {
+  list-style-type: none;
 }
 
 .editDog {
   padding: 10px;
   border:solid 1px;
-  max-width: 1000px;
 }
-.editDog form {
-  text-align: left;
+.editDog ul {
+  list-style-type: none;
+  max-width: 70%;
 }
-.editDogName {
+.editDog li {
+  display: grid;
+}
+.editDog ul span {
   padding: 10px;
+  text-align: center;
+  margin: auto;
+  width: 200px;
+  white-space: nowrap;
+  grid-column: 1/2;
 }
-.editDogName label, .editDogBreed label, .editDogDate label {
-  padding: 10px;
+.editDog ul span:last-child {
+  grid-column: 2/2;
 }
-.editDogBreed {
-  padding: 10px;
+.editDog input, .editDog select {
+  width: 100%
 }
-.editDogDate {
-  padding: 10px;
+.editDog .save {
+  text-align: right;
 }

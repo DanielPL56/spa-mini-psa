@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-const EditDogDate = ({dog}) => {
+const EditDogDate = ({ dog }) => {
 
     const [error, setError ] = useState(null);
     const [newDate, setNewDate ] = useState(dog.dateOfBirth);
-    const [oldDate, setOldDate ] = useState(dog.dateOfBirth);
-    
 
     const handleOnChange = (e) => {
 
@@ -30,13 +28,10 @@ const EditDogDate = ({dog}) => {
     };
 
     return (
-        <div>
-            
-            <input type="date" value={ newDate.slice(0, 10) } onChange={ handleOnChange }/>
-            <label>Nowa data urodzenia: <b>{ newDate.slice(0, 10) }</b></label>
-
-            { error && <h2>{ error }</h2>}
-        </div>
+        <span>
+            <input type="date" required value={ newDate.slice(0, 10) } onChange={ handleOnChange }/>
+            { error && <h2 className="error">{ error }</h2>}
+        </span>
     );
 }
 

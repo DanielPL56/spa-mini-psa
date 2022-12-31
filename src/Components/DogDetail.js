@@ -1,22 +1,36 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import useFetch  from '../Functions/useFetch';
+import DogManager from '../services/api/DogManager';
+import { useEffect, useState } from 'react';
 
 const DogDetail = () => {
-
     const navigate = useNavigate();
     const { dogId } = useParams();
-    const url = `https://localhost:7253/api/Dog/${ dogId }`
-    const { data: dog, isLoading, error } = useFetch(url);
 
-    const handleDeleteClick = () => {
-        fetch(url, { method: "DELETE" })
-        .then(() => {
-            navigate("/dogs");  
-        })
+    const [dog, setDog] = useState();
+    const [isLoading, setIsLoading] = useState();
+    const [error, setError] = useState();
+
+    useEffect(() => {
+        const getDogAsync = async () => {
+            setIsLoading(true);
+            const { isLoading, error, data } = await DogManager.getDog(dogId);
+            setDog(data);
+            setIsLoading(isLoading);
+            setError(error);
+        }
+        getDogAsync();
+    }, [dogId]);
+
+    const handleOnDeleteClick = async () => {
+        setIsLoading(true);
+        const { isLoading, error, okStatus } = await DogManager.deleteDog(dogId);
+        setIsLoading(isLoading);
+        if (okStatus === true) navigate('/dogs');
+        else setError(error);
     }
 
-    const handleEditClick = () => {
-        navigate("/editDog", { state: { dog: dog, url: url }})
+    const handleOnEditClick = () => {
+        navigate("/editDog", { state: { dog: dog }})
     }
 
     return(
@@ -27,11 +41,11 @@ const DogDetail = () => {
             <p>Dog breed: { dog.breed }</p>
             </div> }
             { isLoading && <div>Wczytywanie...</div> }
-            { error && <div>{ error }</div> }
-            <div className="dogDetailButton">
-                <button onClick={ handleEditClick }>Edytuj</button>
-                <button onClick={ handleDeleteClick }>Usuń</button>
-                </div>
+            { error && <div className="error">{ error }</div> }
+            <div className="buttons">
+                <button onClick={ handleOnEditClick }>Edytuj</button>
+                <button onClick={ handleOnDeleteClick }>Usuń</button>
+            </div>
         </div>
     );
 }

@@ -1,11 +1,9 @@
-import useFetch from "../Functions/useFetch";
 import { Link } from 'react-router-dom';
+import useGetDogs from "../hooks/api/useGetDogs.hook";
 
 const ListOfDogs = () => {
-
-    const url = "https://localhost:7253/api/Dog"
-    const { data: dogs, isLoading, error } = useFetch(url);
-
+    const { data: dogs, isLoading, error } = useGetDogs();
+    
     return (
         <div className="dogList">
             { dogs && dogs.map((dog) => (
@@ -20,7 +18,7 @@ const ListOfDogs = () => {
                </div> 
             ))}
             { isLoading && <div>Wczytywanie</div> }
-            { error && <div>{ error }</div> }
+            { error && <div className="error">{ error }</div> }
 
         </div>
     );

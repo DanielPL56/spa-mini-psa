@@ -8,7 +8,7 @@ const ListOfDogs = () => {
         <div className="dogList">
             { dogs && dogs.map((dog) => (
                <div className="dogPreview" key={ dog.id }>
-                <Link to={ `/dog-detail/${ dog.id }` }><h2>{ dog.name }</h2></Link>
+                <Link to={ `/dogDetail/${ dog.id }` }><h2>{ dog.name }</h2></Link>
                 <ul>
                     <li>Rasa: { dog.breed }</li>
                     <li>Data urodzenia: { dog.dateOfBirth.slice(0, 10) }</li>

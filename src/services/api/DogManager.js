@@ -1,7 +1,6 @@
-import React from "react";
 import apiService from "./apiService";
 
-class DogManager extends React.Component {
+class DogManager {
     static deleteDog = async (dogId) => {
         const url = `https://localhost:7253/api/Dog/${dogId}`;
 
@@ -26,8 +25,13 @@ class DogManager extends React.Component {
         return { isLoading, error, okStatus };
     }
 
-    editDog = () => {
-//const url = 'http://httpstat.us/200';
+    static updateDog = async (dog) => {
+        //const url = 'http://httpstat.us/400';
+        const url = `https://localhost:7253/api/Dog/${dog.id}`
+
+        const { isLoading, error, okStatus } = await apiService(url, 'PUT', dog);
+
+        return { isLoading, error, okStatus };
     }
 }
 

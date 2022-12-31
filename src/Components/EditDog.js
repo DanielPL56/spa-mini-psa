@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import EditDogName from "./EditDogName";
 import EditDogBreed from "./EditDogBreed";
 import EditDogDate from "./EditDogDate";
+import DogManager from '../services/api/DogManager';
 
 const EditDog = () => {
 
@@ -10,27 +11,27 @@ const EditDog = () => {
 
     const location = useLocation();
     const dog = location.state.dog;
-    //const url = location.state.url;
 
-    const [oldName, setOldName ] = useState(dog.name)
-    const [oldBreed, setOldBreed ] = useState(dog.breed);
-    const [oldDate, setOldDate ] = useState(dog.dateOfBirth);
+    const [isLoading, setIsLoading] = useState();
+    const [error, setError] = useState();
+    const [oldName, setOldName] = useState(dog.name)
+    const [oldBreed, setOldBreed] = useState(dog.breed);
+    const [oldDate, setOldDate] = useState(dog.dateOfBirth);
 
-    const handleSubmit= (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
-        // fetch(url, {
-        //     method:"PUT",
-        //     headers: {"Content-type" : "Application/json"},
-        //     body: JSON.stringify(dog)
-        // }).then(() => {
-        //     navigate("/dogs")
-        // })
+        const { isLoading, error, okStatus } = await DogManager.updateDog(dog);
+        setIsLoading(isLoading);
+
+        if (okStatus === true) navigate(`/dogDetail/${dog.id}`);
+        else setError(error);
     }
         
     return (
         <div className="editDog">
-            <form onSubmit={ (e) => handleSubmit(e)}>
+            <form onSubmit={ (e) => handleOnSubmit(e)}>
                 <ul>
                     <li>
                         <span>Imię: <b>{ oldName }</b>{ " ==> " }</span>
@@ -46,6 +47,8 @@ const EditDog = () => {
                     </li>
                 </ul>
                 <div className="save"><button>Zapisz</button></div>
+                {isLoading && <div>Wczytywanie...</div>}
+                {error && <div className='error'>{error}</div>}
             </form>
         </div>
     );

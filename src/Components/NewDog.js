@@ -5,17 +5,19 @@ import EditDogBreed from './EditDogBreed';
 import EditDogName from './EditDogName';
 import EditDogDate from './EditDogDate';
 import DogManager from '../services/api/DogManager';
+import EditDogIsDewormedFirstTime from './EditDogIsDewormedFirstTime';
 
 const NewDog = () => {
     const navigate = useNavigate();
     const [ isLoading, setIsLoading ] = useState(false);
     const [ error, setError ] = useState(null);
 
-    const newDog = new Dog('', '-', '');
+    const newDog = new Dog('', '-', '', false, '');
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
+
         if(newDog.breed === '-') {
             setIsLoading(false);
             setError('Wybierz rasę');
@@ -38,6 +40,7 @@ const NewDog = () => {
                     <li><EditDogName dog={newDog} /></li>
                     <li><EditDogBreed dog={newDog} /></li>
                     <li><EditDogDate dog={newDog} /></li>
+                    <li><EditDogIsDewormedFirstTime dog={newDog} /></li>
                 </ul>
                 <div><button>Zapisz</button></div>
             </form>

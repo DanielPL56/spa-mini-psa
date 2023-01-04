@@ -35,11 +35,16 @@ const DogDetail = () => {
 
     return(
         <div className='dogDetail'>
-            Hello from dog detail
-            { dog && <div>
-            <p>Dog id: {dog.id}</p>
-            <p>Dog breed: {dog.breed}</p>
-            </div> }
+            <h2>Szczegóły psa:</h2>
+            { dog && 
+            <ul>
+                <li>Imie: {dog.name}</li>
+                <li>Rasa: {dog.breed}</li>
+                <li>Pies odrobaczony: {dog.isDewormedFirstTime ? 'Tak' : 'Nie'}</li>
+                {dog.isDewormedFirstTime && <li>Data odrobaczenia: {dog.dateOfFirstDeworming}</li>}
+                <li>Data pierwszej szczepionki: {dog.dateOfFirstVaccination}</li>
+            </ul>
+            }
             { isLoading && <div>Wczytywanie...</div> }
             {error && <div className='error'>{error}</div> }
             <div className='buttons'>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { dateIsValid } from '../services/functions/dateIsValid';
 
 const EditDogDate = ({ dog }) => {
 
@@ -6,23 +7,16 @@ const EditDogDate = ({ dog }) => {
     const [newDate, setNewDate ] = useState(dog.dateOfBirth);
 
     const handleOnChange = (e) => {
-
         const value = e.target.value;
-
-        const actualDay = new Date().getDate();
-        const actualMonth = new Date().getMonth();
-        const actualYear = new Date().getFullYear();
-
-        const actualDate = new Date(actualYear, actualMonth, actualDay + 1);
         const chosenDate = new Date(value);
-        
-        if (chosenDate > actualDate) {
-            setError('Podaj poprawną datę urodzenia psa');
+
+        if (dateIsValid(chosenDate)) setError(null);
+        else {
+            setError('Podaj poprawną datę');
             setNewDate('');
             return;
         }
 
-        setError(null);
         setNewDate(value);
         dog.dateOfBirth = value;
     };

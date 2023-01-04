@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## spa-mini-psa
+Frontowa aplikacja łącząca się z Api: https://github.com/DanielPL56/SpaMiniPsa-Api
+Aplikacja zapisuje i wyświetla dane z bazy którą obsługuje ów wspomniane Api. Nad projektem cały czas pracuje i staram się go udoskonalać jak i dodawać nowe funkcjonalności
+
 ## Available Scripts
 
 In the project directory, you can run:

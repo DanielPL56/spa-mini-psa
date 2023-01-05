@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DogManager from '../services/api/DogManager';
 
 const defaultImageSrc = './img/defaultDogImage.png';
@@ -8,21 +8,25 @@ const initialFieldValues = {
     dogName: '',
     dogBreed: '',
     isDewormedFirstTime: false,
-    dateOfBirth: '1996/08/31',
+    dateOfBirth: '31/08/1996',
     imageName: '',
     imageSrc: defaultImageSrc,
     imageFile: null
 }
 
+
+
 const Add = (formData, onSuccess) => {
-    const url = 'https://localhost:7253/api/Dog/AddDogWithImage';
+    const url = 'https://localhost:7253/api/Dog/AddDogWithImage'
 
     fetch(url, {
         method: 'POST',
         body: formData
     }).then(res => {
-        if (res.ok) onSuccess();
-        else console.log(res.text());
+        if (res.ok) {
+            onSuccess();
+            console.log(res.text());
+        }
     })
     .catch(err => console.log(err));
 }
@@ -30,21 +34,6 @@ const Add = (formData, onSuccess) => {
 const Home = () => {
     const [values, setValues] = useState(initialFieldValues);
     const [errors, setErrors] = useState({});
-    
-    const getDog = () => {
-        const url = 'https://localhost:7253/api/Dog/GetDogWithImage/132';
-    
-        fetch(url).then(res => {
-            if (res.ok) return res.json();
-        }).then(data => {
-            console.log(data);
-            setValues({
-                ...values,
-                dogName: data.name,
-                imageSrc: 'data:image/jpg;base64,' + data.image
-            });
-        })
-    }
 
     const resetForm = () => {
         setValues(initialFieldValues);
@@ -63,7 +52,6 @@ const Home = () => {
     const showPreview = (e) => {
         if (e.target.files && e.target.files[0]) {
             let imageFile = e.target.files[0];
-            
             const reader = new FileReader();
             reader.onload = x => {
                 setValues({
@@ -98,16 +86,13 @@ const Home = () => {
         if (validate()) {
             let formData = new FormData();
 
-            const dog = {
-                id: values.id,
-                name: values.dogName,
-                breed: values.dogBreed,
-                dateOfBirth: values.dateOfBirth,
-                isDewormedFirstTime: values.isDewormedFirstTime
-            };
-            formData.append('dog', JSON.stringify(dog));
-
-            formData.append('file', values.imageFile);
+            formData.append('id', values.dogId);
+            formData.append('name', values.dogName);
+            formData.append('breed', values.dogBreed);
+            formData.append('dateOfBirth', values.dateOfBirth);
+            formData.append('isDewormedFirstTime', values.isDewormedFirstTime);
+            formData.append('imageName', values.imageName);
+            formData.append('imageFile', values.imageFile);
 
             Add(formData, resetForm)    
         }
@@ -132,7 +117,6 @@ const Home = () => {
                     <button>Submit</button>
                 </div>
             </form>
-            <button onClick={getDog}>GetDog</button>
         </>
     );
 }

@@ -24,6 +24,12 @@ input, select {
   text-align: center;
 }
 
+.invalid-field {
+  border-color: #dc3545;
+  color: #dc3545;
+  background-color: #fff;
+}
+
 .error {
   color: red;
   font-size: 1.5em;

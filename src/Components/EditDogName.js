@@ -11,7 +11,7 @@ const EditDogName = ({ dog }) => {
 
     return (
         <span>
-            <input type='text' required value={newName} onChange={(e) => {handleChange(e.target.value)}} />
+            <input type='text' placeholder='Imię' required value={newName} onChange={(e) => {handleChange(e.target.value)}} />
         </span>
     );
 }

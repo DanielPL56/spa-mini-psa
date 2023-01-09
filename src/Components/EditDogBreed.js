@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useGetBreeds from '../hooks/api/useGetBreeds.hook';
 
 const EditDogBreed = ({ dog }) => {
@@ -7,6 +7,7 @@ const EditDogBreed = ({ dog }) => {
     const [error, setError ] = useState(null);
 
     const { data: breeds, error: fetchError } = useGetBreeds();
+    
     if (fetchError !== null) setError(fetchError);
     
     const handleOnChange = (value) => {
@@ -20,7 +21,7 @@ const EditDogBreed = ({ dog }) => {
 
     return (
         <span>
-            <select type='text' required value={newBreed} onChange={(e) => handleOnChange(e.target.value)}>
+            <select type='text' placeholder='Rasa' value={newBreed} onChange={(e) => handleOnChange(e.target.value)}>
                 {breeds && breeds.map((breed) => ( 
                     <option key={breed.id} value={breed.name}>{breed.name}</option>
                 ))}

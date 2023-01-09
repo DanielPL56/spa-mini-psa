@@ -24,6 +24,8 @@ input, select {
   text-align: center;
 }
 
+
+
 .invalid-field {
   border-color: #dc3545;
   color: #dc3545;
@@ -110,6 +112,26 @@ input, select {
 }
 .newDog ul {
   list-style-type: none;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+}
+img:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.2);
+}
+
+.profileImage {
+  width: 200px;
+  height: 200px;
+  border: solid black;
+  box-shadow: none;
+}
+.profileImage:hover {
+    cursor: default;
+    box-shadow: none;
 }
 
 .editDog {

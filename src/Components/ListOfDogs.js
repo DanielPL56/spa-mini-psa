@@ -8,7 +8,9 @@ const ListOfDogs = () => {
         <div className='dogList'>
             {dogs && dogs.map((dog) => (
                <div className='dogPreview' key={dog.id}>
-                <Link to={`/dogDetail/${ dog.id }`}><h2>{dog.name}</h2></Link>
+                {/* <Link to={`/dogDetail/${ dog.id }`}><h2>{dog.name}</h2></Link> */}
+                <Link to={`/dogDetail`} state={dog}><h2>{dog.name}</h2></Link>
+                {dog.profileImage && <img className='profileImage' alt='Zdjecie profilowe' src={`data:image/jpg;base64, ${dog.profileImage}`}/>}
                 <ul>
                     <li>Rasa: {dog.breed}</li>
                     <li>Data urodzenia: {dog.dateOfBirth.slice(0, 10)}</li>

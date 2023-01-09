@@ -5,7 +5,6 @@ import EditDogBreed from './EditDogBreed';
 import EditDogDate from './EditDogDate';
 import DogManager from '../services/api/DogManager';
 import EditDogIsDewormedFirstTime from './EditDogIsDewormedFirstTime';
-import EditDogIsDewormedFirstTimeDate from './EditDogIsDewormedFirstTimeDate';
 
 const EditDog = () => {
     const navigate = useNavigate();
@@ -28,7 +27,7 @@ const EditDog = () => {
         const { isLoading, error, okStatus } = await DogManager.updateDog(dog);
         setIsLoading(isLoading);
 
-        if (okStatus === true) navigate(`/dogDetail/${dog.id}`);
+        if (okStatus === true) navigate(`/dogDetail/${dog.id}`, {state: dog});
         else setError(error);
     }
         

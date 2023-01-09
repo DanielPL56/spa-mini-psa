@@ -3,6 +3,7 @@ import useFetch from './useFetch.hook';
 
 const useGetDogs = () => {
     const url = 'https://localhost:7253/api/Dog';
+    //const url = 'https://localhost:7253/api/Dog/GetAllDogsWithImage';
     const [data, setData] = useState();
 
     const { isLoading, error, executeAsync, abort } = useFetch(url);

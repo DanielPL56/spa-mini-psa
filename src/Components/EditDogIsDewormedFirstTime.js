@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { dateIsValid } from "../services/functions/dateIsValid";
-import getActualDate from "../services/functions/getActualDate";
-import EditDogIsDewormedFirstTimeDate from "./EditDogIsDewormedFirstTimeDate";
 
 const EditDogIsDewormedFirstTime = ({ dog }) => {
     const [error, setError] = useState(null);

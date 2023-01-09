@@ -1,29 +1,24 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import DogManager from '../services/api/DogManager';
 import { useEffect, useState } from 'react';
+import { getImgSource } from '../services/functions/getImgSource';
 
 const DogDetail = () => {
     const navigate = useNavigate();
-    const { dogId } = useParams();
 
-    const [dog, setDog] = useState();
+    const location = useLocation();
+    const [dog, setDog] = useState(location.state);
     const [isLoading, setIsLoading] = useState();
     const [error, setError] = useState();
+    const [imagesToDisplay, setImagesToDisplay] = useState([]);
 
     useEffect(() => {
-        const getDogAsync = async () => {
-            setIsLoading(true);
-            const { isLoading, error, data } = await DogManager.getDog(dogId);
-            setDog(data);
-            setIsLoading(isLoading);
-            setError(error);
-        }
-        getDogAsync();
-    }, [dogId]);
+        dog.images.forEach(img => setImagesToDisplay(prev => [...prev, {id: img.id, file: getImgSource(img.file)}]));
+    }, [dog])
 
     const handleOnDeleteClick = async () => {
         setIsLoading(true);
-        const { isLoading, error, okStatus } = await DogManager.deleteDog(dogId);
+        const { isLoading, error, okStatus } = await DogManager.deleteDog(dog.id);
         setIsLoading(isLoading);
         if (okStatus === true) navigate('/dogs');
         else setError(error);
@@ -35,7 +30,7 @@ const DogDetail = () => {
 
     return(
         <div className='dogDetail'>
-            <h2>Szczegóły psa:</h2>
+            <img className='profileImage' src={getImgSource(dog.profileImage)} alt='Zdjęcie profilowe' />
             { dog && 
             <ul>
                 <li>Imie: {dog.name}</li>
@@ -45,11 +40,17 @@ const DogDetail = () => {
                 <li>Data pierwszej szczepionki: {dog.dateOfFirstVaccination}</li>
             </ul>
             }
-            { isLoading && <div>Wczytywanie...</div> }
-            {error && <div className='error'>{error}</div> }
+            
             <div className='buttons'>
                 <button onClick={handleOnEditClick}>Edytuj</button>
                 <button onClick={handleOnDeleteClick}>Usuń</button>
+            </div>
+            {isLoading && <div>Wczytywanie...</div> }
+            {error && <div className='error'>{error}</div> }
+            <div>
+                {imagesToDisplay && imagesToDisplay.map((img) => (
+                    <img key={img.id} src={img.file} alt='gallery' />
+                ))}
             </div>
         </div>
     );

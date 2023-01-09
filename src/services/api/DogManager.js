@@ -1,10 +1,12 @@
 import apiService from './apiService';
+import apiServiceWithFiles from './apiServiceWithFiles';
 
 class DogManager {
     static url = 'https://localhost:7253/api/Dog';
 
     static deleteDog = async (dogId) => {
         const url = this.url + `/${dogId}`;
+        //const url = this.url + `/DeleteDogWithImage/${dogId}`;
 
         const { isLoading, error, okStatus } = await apiService(url, 'DELETE');
 
@@ -30,6 +32,14 @@ class DogManager {
         const url = this.url + `/${dog.id}`;
 
         const { isLoading, error, okStatus } = await apiService(url, 'PUT', dog);
+
+        return { isLoading, error, okStatus };
+    }
+
+    static addDogWithImage = async (formData) => {
+        const url = 'https://localhost:7253/api/Dog/AddDogWithImage'
+
+        const { isLoading, error, okStatus } = await apiServiceWithFiles(url, 'POST', formData);
 
         return { isLoading, error, okStatus };
     }

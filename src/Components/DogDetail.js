@@ -29,6 +29,7 @@ const DogDetail = () => {
     }
 
     return(
+        <>
         <div className='dogDetail'>
             <img className='profileImage' src={getImgSource(dog.profileImage)} alt='Zdjęcie profilowe' />
             { dog && 
@@ -47,12 +48,14 @@ const DogDetail = () => {
             </div>
             {isLoading && <div>Wczytywanie...</div> }
             {error && <div className='error'>{error}</div> }
-            <div>
-                {imagesToDisplay && imagesToDisplay.map((img) => (
-                    <img key={img.id} src={img.file} alt='gallery' />
-                ))}
-            </div>
+            
         </div>
+        <div className='gallery'>
+        {imagesToDisplay && imagesToDisplay.map((img) => (
+            <img key={img.id} src={img.file} alt='gallery' />
+        ))}
+    </div>
+    </>
     );
 }
 

@@ -104,7 +104,7 @@ const NewDog = () => {
             </form>
             {error && <h2 className='error'>{error}</h2>}
             {isLoading && <h2>Wczytywanie...</h2>}
-            <div>
+            <div className='gallery'>
                 {images.imagesToDisplay && images.imagesToDisplay.map(img => (
                     <img key={img.id} src={img.src} onClick={selectProfileImage} alt=''></img>
                 ))}

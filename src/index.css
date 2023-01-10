@@ -1,6 +1,7 @@
 * {
-  margin: 0px;
+  margin: 0px auto;
   color: #333;
+  max-width: 1000px;
 }
 
 button {
@@ -24,7 +25,39 @@ input, select {
   text-align: center;
 }
 
+img {
+  /* width: 150px;
+  height: 150px; */
+}
+img:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.2);
+  opacity: 0.8;
+}
 
+.gallery {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-width: 33%;
+  -moz-column-width: 33%;
+  column-width: 300px;
+  padding: 0 12px;
+}
+.gallery img {
+  max-width: 100%;
+}
+
+.profileImage {
+  width: 200px;
+  height: 200px;
+  border: solid black;
+  box-shadow: none;
+}
+.profileImage:hover {
+    cursor: default;
+    box-shadow: none;
+}
 
 .invalid-field {
   border-color: #dc3545;
@@ -39,18 +72,15 @@ input, select {
 }
 
 .content {
-  max-width: 1000px;
   padding: 10px;
-  margin: 0 auto;
   margin-top: 10px;
 }
 
 .navbar {
-  max-width: 1000px;
   padding: 10px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin: 0 auto;
   margin-top: 10px;
   border-style: inset;  
 }
@@ -114,26 +144,6 @@ input, select {
   list-style-type: none;
 }
 
-img {
-  width: 150px;
-  height: 150px;
-}
-img:hover {
-  cursor: pointer;
-  box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.2);
-}
-
-.profileImage {
-  width: 200px;
-  height: 200px;
-  border: solid black;
-  box-shadow: none;
-}
-.profileImage:hover {
-    cursor: default;
-    box-shadow: none;
-}
-
 .editDog {
   padding: 10px;
   border:solid 1px;
@@ -151,6 +161,9 @@ img:hover {
   margin: auto;
   width: 200px;
   white-space: nowrap;
+  
+}
+.editDog ul span:first-child {
   grid-column: 1/2;
 }
 .editDog ul span:last-child {
